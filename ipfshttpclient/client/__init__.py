@@ -45,39 +45,39 @@ from . import unstable
 from .. import encoding, exceptions, http, multipart, utils
 
 
-# def assert_version(version: str, minimum: str = VERSION_MINIMUM,
-#                    maximum: str = VERSION_MAXIMUM,
-#                    blacklist: ty.Iterable[str] = VERSION_BLACKLIST) -> None:
-# 	"""Make sure that the given daemon version is supported by this client
-# 	version.
+def assert_version(version: str, minimum: str = VERSION_MINIMUM,
+                   maximum: str = VERSION_MAXIMUM,
+                   blacklist: ty.Iterable[str] = VERSION_BLACKLIST) -> None:
+	"""Make sure that the given daemon version is supported by this client
+	version.
 
-# 	Raises
-# 	------
-# 	~ipfshttpclient.exceptions.VersionMismatch
+	Raises
+	------
+	~ipfshttpclient.exceptions.VersionMismatch
 
-# 	Parameters
-# 	----------
-# 	version
-# 		The actual version of an IPFS daemon
-# 	minimum
-# 		The minimal IPFS daemon version allowed (inclusive)
-# 	maximum
-# 		The maximum IPFS daemon version allowed (exclusive)
-# 	blacklist
-# 		Versions explicitly disallowed even if in range *minimum* – *maximum*
-# 	"""
-# 	# Convert version strings to integer tuples
-# 	version = list(map(int, version.split('-', 1)[0].split('.')))
-# 	minimum = list(map(int, minimum.split('-', 1)[0].split('.')))
-# 	maximum = list(map(int, maximum.split('-', 1)[0].split('.')))
+	Parameters
+	----------
+	version
+		The actual version of an IPFS daemon
+	minimum
+		The minimal IPFS daemon version allowed (inclusive)
+	maximum
+		The maximum IPFS daemon version allowed (exclusive)
+	blacklist
+		Versions explicitly disallowed even if in range *minimum* – *maximum*
+	"""
+	# Convert version strings to integer tuples
+	version = list(map(int, version.split('-', 1)[0].split('.')))
+	minimum = list(map(int, minimum.split('-', 1)[0].split('.')))
+	maximum = list(map(int, maximum.split('-', 1)[0].split('.')))
 
-# 	if minimum > version or version >= maximum:
-# 		warnings.warn(exceptions.VersionMismatch(version, minimum, maximum))
+	if minimum > version or version >= maximum:
+		warnings.warn(exceptions.VersionMismatch(version, minimum, maximum))
 
-# 	for blacklisted in blacklist:
-# 		blacklisted = list(map(int, blacklisted.split('-', 1)[0].split('.')))
-# 		if version == blacklisted:
-# 			warnings.warn(exceptions.VersionMismatch(version, minimum, maximum))
+	for blacklisted in blacklist:
+		blacklisted = list(map(int, blacklisted.split('-', 1)[0].split('.')))
+		if version == blacklisted:
+			warnings.warn(exceptions.VersionMismatch(version, minimum, maximum))
 
 
 def connect(
@@ -121,7 +121,7 @@ def connect(
 	)
 	
 	# Query version number from daemon and validate it
-	# assert_version(client.apply_workarounds()["Version"])
+	assert_version(client.apply_workarounds()["Version"])
 	
 	return client
 
